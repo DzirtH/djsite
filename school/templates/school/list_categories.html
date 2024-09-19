@@ -1,0 +1,7 @@
+{% for y in years %}
+{% if y.pk == year_selected %}
+<li class="selected"> {{y.name}}</li>
+{% else %}
+<li> <a href="{% url 'category' y.pk %}"> {{y.name}} </a> </li>
+{% endif %}
+{% endfor %}

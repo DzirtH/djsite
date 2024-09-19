@@ -1,0 +1,23 @@
+{% extends 'school/base.html' %}
+{% block content %}
+
+<div class="room-container">
+
+    <div>
+
+
+        {% for room in rooms%}
+
+        <div>
+            <span>@{{room.host.username}}</span>
+            <h5>{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a></h5>
+        </div>
+
+        {% endfor %}
+
+
+
+    </div>
+</div>
+
+{% endblock content %}

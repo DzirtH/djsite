@@ -1,0 +1,40 @@
+{% extends 'school/base.html' %}
+
+{% block content %}
+<h1> {{post.title}}</h1>
+
+{% if post.photo %}
+<p> <img class="img-article-left" src="{{post.photo.url}}"> </p>
+{% endif %}
+
+
+{{post.content|linebreaks}}
+<div class='comment-wrapper'>
+    <h3>Conversation</h3>
+    <hr>
+
+    <div class='chat'>
+        {% for chat in chats.all %}
+        {% if chat.user.id == request.user.id %}
+        <div class='message sender'>
+            {{chat.content}}
+        </div>
+        {% else %}
+        <div class="message receiver">
+            {{chat.content}}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class='container'>
+        <input class='textInput' type="text" name="" id="chat-message-input" size='100'> <br>
+        <input type="button" value="Send" id="chat-message-submit" class="button">
+        {{room_name|json_script:'room_name'}}
+    </div>
+</div>
+{{request.user.id|json_script:'user_id'}}
+
+
+
+{% endblock content %}
